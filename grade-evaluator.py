@@ -40,17 +40,73 @@ def evaluate_grades(data):
     print("\n--- Processing Grades ---")
     
     # TODO: a) Check if all scores are percentage based (0-100)
-    for row in reader:
-        for i in row[2]:
-            while(i < 0 or i >100):
-                print("The score has to be between 0 and 100")
-            print("For {} assignment you have {}".format(row[0], i))
+    for row in data:
+        if row['score'] < 0 or row['score'] > 100:
+            print(f"Invalid score for {row['assignment']}, it must be 0-100")
+            
     # TODO: b) Validate total weights (Total=100, Summative=40, Formative=60)
+    total_weight = 0
+    tot_sum_weight = 0
+    tot_form_weight = 0
+    for row in data:
+        total_weight += row['weight']
+        if row['group'] == 'Summative':
+            Tot_sum_weight += row['weight']
+        elif row['group'] == 'Formative':
+            tot_form_weight += row['weight']
+
+    if total_weight != 100:
+        print(f"Invalid total weight, {total_weight} has to be 100")
+    
+    if tot_sum_weight != 40:
+        print(f"Warning! the summative total weight {tot_sum_weight} should to be 40")
+
+    if tot_form_weight != 60:
+        print(f"Warning, the formative total weight: {tot_form_weight} should be 60")
+            
 
     # TODO: c) Calculate the Final Grade and GPA
+    final_grade = 0
+    for row in data:
+        grade = row['score'] * (row['weight'] / 100)
+        final_grade += grade
+    print("Your final grade is {}".format(final_grade))
+    GPA = (final_grade / 100) * 5.0
+    print(f"Your final GPA is {GPA}")
+
+
+
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
+    #I am going to use 20 and 30 the respective 50% of summative and formative. 
+    sum_score = 0
+    form_score = 0
+    for row in data:
+        id_score = row['score'] * (row['weight'] / 100)
+        if row['group'] == 'Summative':
+            sum_score += id_score
+        elif row['group'] == 'Formative':
+            form_score += id_score
+
+    if sum_score >= 20 and form_score >=30:
+        print("Passed")
+    else:
+        print("Failed")
     # TODO: e) Check for failed formative assignments (< 50%)
     #          and determine which one(s) have the highest weight for resubmission.
+    
+    failed = []
+    for row in data:
+        if row['group'] == 'Formative' and row['score'] < 50:
+            failed.append()
+
+    if failed:
+        highest = max(failed, key=lambda r: r['weight'])
+        print(f"Permission to resubmit this: {highest['assignment']} weighting {highest['weight']}")
+    else:
+        print("You have no failed formative assignment")
+
+
+
     # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
     
     pass
