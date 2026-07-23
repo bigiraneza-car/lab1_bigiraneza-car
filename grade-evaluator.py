@@ -70,25 +70,24 @@ def evaluate_grades(data):
     for row in data:
         grade = row['score'] * (row['weight'] / 100)
         final_grade += grade
-    print("Your final grade is {}".format(final_grade))
+
     GPA = (final_grade / 100) * 5.0
-    print(f"Your final GPA is {GPA}")
 
 
 
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
     #I am going to determine the respective 50% of summative and formative. 
-    sum_score = 0
-    form_score = 0
+    sum_weight = 0
+    form_weight = 0
     for row in data:
         id_score = row['score'] * (row['weight'] / 100)
         if row['group'] == 'Summative':
-            sum_score += id_score
+            sum_weight += id_score
         elif row['group'] == 'Formative':
-            form_score += id_score
+            form_weight += id_score
 
-    sum_percent = (sum_score / tot_sum_weight) * 100
-    form_percent = (form_score / tot_form_weight) * 100
+    sum_percent = (sum_weight / tot_sum_weight) * 100
+    form_percent = (form_weight / tot_form_weight) * 100
 
     if sum_percent >= 50 and form_percent >=50:
         print("PASSED")
@@ -102,6 +101,7 @@ def evaluate_grades(data):
         if row['group'] == 'Formative' and row['score'] < 50:
             failed.append(row)
     # step 2: filter the result
+    resubmit =[]
     if failed:
         #find the highest weight among the failed formatives.
         highest = 0
@@ -110,7 +110,7 @@ def evaluate_grades(data):
                 highest = row['weight']
 
         #display the assignment with the highest weight(for ties)
-        resubmit = []
+
         for row in failed:
             if row['weight'] == highest:
                 resubmit.append(row)
@@ -124,6 +124,16 @@ def evaluate_grades(data):
 
 
     # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
+    print("--- FINAL REPORT---")
+    print(f"Formatives final weight : {form_weight}")
+    print(f"Summatives final weight : {sum_weight}")
+    print(f"Final Grade: {final_grade}")
+    print(f"GPA: {GPA}")
+    
+    if sum_percent >=50 and form_percent >= 50:
+        print("PASSED")
+    else:
+        print("FAILED")
 
     
     pass
