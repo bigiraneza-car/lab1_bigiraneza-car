@@ -40,7 +40,13 @@ def evaluate_grades(data):
     print("\n--- Processing Grades ---")
     
     # TODO: a) Check if all scores are percentage based (0-100)
+    for row in reader:
+        for i in row[2]:
+            while(i < 0 or i >100):
+                print("The score has to be between 0 and 100")
+            print("For {} assignment you have {}".format(row[0], i))
     # TODO: b) Validate total weights (Total=100, Summative=40, Formative=60)
+
     # TODO: c) Calculate the Final Grade and GPA
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
     # TODO: e) Check for failed formative assignments (< 50%)
