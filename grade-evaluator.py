@@ -119,13 +119,9 @@ def evaluate_grades(data):
         print("No formative assignment failed. No resubmission")
 
 
-        print(f"Permission to resubmit this: {highest['assignment']} weighting {highest['weight']}")
-    else:
-        print("You have no failed formative assignment")
-
-
 
     # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
+
     
     pass
 
