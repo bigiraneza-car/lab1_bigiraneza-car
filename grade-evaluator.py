@@ -89,10 +89,7 @@ def evaluate_grades(data):
     sum_percent = (sum_weight / tot_sum_weight) * 100
     form_percent = (form_weight / tot_form_weight) * 100
 
-    if sum_percent >= 50 and form_percent >=50:
-        print("PASSED")
-    else:
-        print("FAILED")
+
     # TODO: e) Check for failed formative assignments (< 50%)
     #          and determine which one(s) have the highest weight for resubmission.
     #step 1: collect all the failed formative.
