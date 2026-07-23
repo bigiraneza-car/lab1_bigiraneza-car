@@ -98,23 +98,14 @@ def evaluate_grades(data):
         if row['group'] == 'Formative' and row['score'] < 50:
             failed.append(row)
     # step 2: filter the result
-    resubmit =[]
+    resubmit = []
     if failed:
- if row['weight'] == highest:
-                resubmit.append(row)
-
-        print("Eligible for resubmission:")
-        for row in resubmit:
-            print(f" -{row['assignment']} (weight {row['weight']})")
-    else:
-        print("No formative assignment failed. No resubmission")        #find the highest weight among the failed formatives.
+    #find the highest weight among the failed formatives.
         highest = 0
         for row in failed:
             if row['weight'] > highest:
                 highest = row['weight']
-
         #display the assignment with the highest weight(for ties)
-
         for row in failed:
             if row['weight'] == highest:
                 resubmit.append(row)
