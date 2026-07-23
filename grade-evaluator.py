@@ -51,7 +51,7 @@ def evaluate_grades(data):
     for row in data:
         total_weight += row['weight']
         if row['group'] == 'Summative':
-            Tot_sum_weight += row['weight']
+            tot_sum_weight += row['weight']
         elif row['group'] == 'Formative':
             tot_form_weight += row['weight']
 
@@ -77,7 +77,7 @@ def evaluate_grades(data):
 
 
     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
-    #I am going to use 20 and 30 the respective 50% of summative and formative. 
+    #I am going to determine the respective 50% of summative and formative. 
     sum_score = 0
     form_score = 0
     for row in data:
@@ -87,10 +87,13 @@ def evaluate_grades(data):
         elif row['group'] == 'Formative':
             form_score += id_score
 
-    if sum_score >= 20 and form_score >=30:
-        print("Passed")
+    sum_percent = (sum_score / tot_sum_weight) * 100
+    form_percent = (form_score / tot_form_weight) * 100
+
+    if sum_percent >= 50 and form_percent >=50:
+        print("PASSED")
     else:
-        print("Failed")
+        print("FAILED")
     # TODO: e) Check for failed formative assignments (< 50%)
     #          and determine which one(s) have the highest weight for resubmission.
     #step 1: collect all the failed formative.
