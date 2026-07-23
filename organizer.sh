@@ -5,7 +5,7 @@ if [ ! -d archive ]; then
 fi
 
 #timestamp generation
-timestamp= $(date +%Y%m%d-%H%M%S)
+timestamp=$(date +%Y%m%d-%H%M%S)
 
 #archiving the renamed grades+timestamp file.
 new_name="grades_${timestamp}.csv"
