@@ -119,12 +119,6 @@ def evaluate_grades(data):
             if row['weight'] == highest:
                 resubmit.append(row)
 
-        print("Eligible for resubmission:")
-        for row in resubmit:
-            print(f" -{row['assignment']} (weight {row['weight']})")
-    else:
-        print("No formative assignment failed. No resubmission")
-
 
 
     # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
