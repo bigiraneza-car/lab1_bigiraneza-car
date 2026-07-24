@@ -5,12 +5,28 @@ This project is a python application that calculates a student's final academic 
 
 To run this project:
  - Firstly, you clone the github repository using:
- git clone https://github.com/bigiraneza-car/lab1_bigiraneza-car.git
+ ```bash
+git clone https://github.com/bigiraneza-car/lab1_bigiraneza-car.git
+ ```
 
  - Secondly, you change your working directory to the repository name, then you list the files present in the directory:
+ ```bash
  cd lab1_bigiraneza-car
  ls
+ ```
  - Thirdly, to run the python file, you use the command:
- python3 grade-evaluator.py or ./grade-evaluator.py
+ ```bash 
+ python3 grade-evaluator.py
+ ``` 
+ or
+ ```bash 
+ ./grade-evaluator.py 
+ ```
  - Lastly, to run the bash shell script, you use:
- bash organizer.sh or ./organizer.sh  
+  ```bash
+  bash organizer.sh
+  ``` 
+  or 
+  ```bash
+  ./organizer.sh
+  ```  
